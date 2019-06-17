@@ -1,4 +1,4 @@
-package com.codefood.architecture;
+package com.codefood.arch;
 
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package com.codefood.architecture;
+package com.codefood.arch;
 
 import android.content.Context;
 import androidx.test.InstrumentationRegistry;
