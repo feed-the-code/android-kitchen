@@ -7,6 +7,7 @@ import android.net.Uri
 import android.util.Log
 import com.codefood.kitchen.koinApp
 import com.codefood.kitchen.feature.AuthFeature
+import okhttp3.Interceptor
 
 class EntryProvider : ContentProvider() {
 
@@ -18,7 +19,10 @@ class EntryProvider : ContentProvider() {
 
     override fun onCreate(): Boolean {
         Log.i("EntryProvider", "Initializing...")
-        koinApp.koin.declare<AuthFeature>(FeatureImpl)
+        koinApp.koin.apply {
+            declare<AuthFeature>(FeatureImpl)
+            declare(AuthInterceptor(), secondaryTypes = listOf(Interceptor::class))
+        }
         return true
     }
 
