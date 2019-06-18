@@ -15,6 +15,8 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro', '../library/network/proguard-network.pro'
         }
     }
+
+    dynamicFeatures = [":feature:entry"]
 }
 
 dependencies {
