@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Kitchen</string>
     <string name="title_featureentry">Entry</string>
+    <string name="title_activity_login">Sign in</string>
 </resources>

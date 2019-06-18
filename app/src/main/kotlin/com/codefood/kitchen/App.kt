@@ -1,14 +1,12 @@
 package com.codefood.kitchen
 
 import android.app.Application
-import com.codefood.network.networkModule
-import org.koin.core.context.startKoin
+import org.koin.core.context.GlobalContext
 
 class App : Application() {
     override fun onCreate() {
         super.onCreate()
-        startKoin {
-            modules(listOf(appModule, networkModule))
-        }
+        GlobalContext.start(koinApp)
+        koinApp.createEagerInstances()
     }
 }

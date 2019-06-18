@@ -1,13 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:dist="http://schemas.android.com/apk/distribution"
-          package="com.codefood.entry">
-    <dist:module
-            dist:instant="false"
-            dist:title="@string/title_featureentry">
-        <dist:delivery>
-            <dist:install-time/>
-        </dist:delivery>
-        <dist:fusing dist:include="true"/>
-    </dist:module>
-</manifest>
+    xmlns:dist="http://schemas.android.com/apk/distribution"
+    package="com.codefood.entry">
 
+    <dist:module
+        dist:instant="false"
+        dist:title="@string/title_featureentry">
+        <dist:delivery>
+            <dist:install-time />
+        </dist:delivery>
+
+        <dist:fusing dist:include="true" />
+    </dist:module>
+
+    <application>
+        <provider
+            android:name=".EntryProvider"
+            android:authorities="entry"
+            android:enabled="true"
+            android:exported="false"></provider>
+
+        <activity
+            android:name=".ui.login.LoginActivity"
+            android:label="@string/title_activity_login" />
+    </application>
+
+</manifest>
