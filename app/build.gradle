@@ -20,6 +20,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(":library:network")
     implementation Kotlin.stdLib
+    implementation DI.koinViewmodel
     implementation Jetpack.appCompat
     implementation Jetpack.core
     testImplementation Testing.jUnit
