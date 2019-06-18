@@ -39,10 +39,8 @@ subprojects {
                     testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
                 }
 
-                sourceSets {
-                    main.java.srcDirs += 'src/main/kotlin'
-                    debug.java.srcDirs += 'src/debug/kotlin'
-                    release.java.srcDirs += 'src/release/kotlin'
+                sourceSets.each { set ->
+                    set.java.srcDirs += "src/${set.name}/kotlin"
                 }
 
                 buildTypes {
