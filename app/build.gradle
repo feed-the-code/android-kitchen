@@ -30,7 +30,8 @@ dependencies {
     api Kotlin.stdLib
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    
+    implementation project(":library:network")
+
     testImplementation Testing.jUnit
     androidTestImplementation Testing.androidRunner
     androidTestImplementation Testing.espressoCore
