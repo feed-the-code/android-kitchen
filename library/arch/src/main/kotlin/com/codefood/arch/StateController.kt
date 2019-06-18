@@ -71,7 +71,9 @@ class StateController<T> {
     }
 
     private fun dispatchState(status: Status) {
-        this.liveData.value = Stateful(this.status, status, data, error)
+        runOnMainThread {
+            liveData.value = Stateful(this.status, status, data, error)
+        }
         this.status = status
     }
 
