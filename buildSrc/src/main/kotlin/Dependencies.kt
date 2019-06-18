@@ -2,11 +2,12 @@ object Jetpack {
     const val appCompat = "androidx.appcompat:appcompat:${Versions.appCompat}"
     const val core = "androidx.core:core-ktx:${Versions.core}"
     const val fragment = "androidx.fragment:fragment-ktx:${Versions.fragment}"
-    // ktx transitively depends on lifecycle, so include only one
     const val lifecycle = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
     const val recyclerView = "androidx.recyclerview:recyclerview:${Versions.recyclerView}"
+    const val annotation = "androidx.annotation:annotation:${Versions.annotation}"
 
     private object Versions {
+        const val annotation = "1.1.0"
         const val core = "1.1.0-rc01"
         const val appCompat = "1.1.0-beta01"
         const val fragment = "1.1.0-beta01"
