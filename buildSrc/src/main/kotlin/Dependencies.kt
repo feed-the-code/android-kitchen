@@ -30,6 +30,7 @@ object Kotlin {
     const val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.kotlinCoroutines}"
     const val coroutinesAndroid =
         "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.kotlinCoroutines}"
+    const val reflection = "org.jetbrains.kotlin:kotlin-reflect:${Versions.kotlin}"
 
     private object Versions {
         const val kotlin = "1.3.31"
@@ -59,13 +60,16 @@ object DI {
 }
 
 object Testing {
-    const val jUnit = "junit:junit:${Versions.jUnit}"
+    const val jUnit = "org.junit.jupiter:junit-jupiter:${Versions.jUnit}"
     const val androidRunner = "androidx.test:runner:${Versions.runner}"
     const val espressoCore = "androidx.test.espresso:espresso-core:${Versions.espressoCore}"
+    const val spek = "org.spekframework.spek2:spek-dsl-jvm:${Versions.spek}"
+    const val spekRunner = "org.spekframework.spek2:spek-runner-junit5:${Versions.spek}"
 
     private object Versions {
-        const val jUnit = "4.12"
+        const val jUnit = "5.4.2"
         const val runner = "1.2.0"
         const val espressoCore = "3.2.0"
+        const val spek = "2.0.5"
     }
 }
