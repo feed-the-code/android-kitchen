@@ -9,10 +9,16 @@ android {
         versionCode 1
         versionName "1.0"
     }
+    buildTypes {
+        release {
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro', '../library/network/proguard-network.pro'
+        }
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(":library:network")
     implementation Kotlin.stdLib
     implementation Jetpack.appCompat
     implementation Jetpack.core

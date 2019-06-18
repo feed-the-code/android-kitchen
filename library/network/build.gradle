@@ -1,0 +1,19 @@
+plugins {
+    id 'java-library'
+    id "org.jetbrains.kotlin.jvm"
+    id "org.jetbrains.kotlin.kapt"
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation Kotlin.stdLib
+
+    api Network.retrofit
+    implementation Network.serializationConverter
+    implementation Network.loggingInterceptor
+
+    implementation DI.koin
+}
+
+sourceCompatibility = "8"
+targetCompatibility = "8"

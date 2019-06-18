@@ -37,6 +37,27 @@ object Kotlin {
     }
 }
 
+object Network {
+    const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
+    const val serializationConverter = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:${Versions.converter}"
+    const val loggingInterceptor = "com.squareup.okhttp3:logging-interceptor:${Versions.okHttp}"
+
+    private object Versions {
+        const val retrofit = "2.6.0"
+        const val okHttp = "3.14.2"
+        const val converter = "0.4.0"
+    }
+}
+
+object DI {
+    const val koin = "org.koin:koin-core:${Versions.koin}"
+    const val koinViewmodel = "org.koin:koin-androidx-viewmodel:${Versions.koin}"
+
+    private object Versions {
+        const val koin = "2.0.1"
+    }
+}
+
 object Testing {
     const val jUnit = "junit:junit:${Versions.jUnit}"
     const val androidRunner = "androidx.test:runner:${Versions.runner}"
