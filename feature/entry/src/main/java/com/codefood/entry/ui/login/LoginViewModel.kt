@@ -4,10 +4,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import android.util.Patterns
+import com.codefood.arch.ResourceMessageException
 import com.codefood.entry.data.LoginRepository
-import com.codefood.entry.data.Result
+import com.codefood.arch.Result
 
 import com.codefood.entry.R
+import com.codefood.entry.data.model.LoggedInUser
+
+typealias LoginResult = Result<LoggedInUserView>
 
 class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel() {
 
@@ -21,11 +25,11 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
         // can be launched in a separate asynchronous job
         val result = loginRepository.login(username, password)
 
-        if (result is Result.Success) {
-            _loginResult.value = LoginResult(success = LoggedInUserView(displayName = result.data.displayName))
-        } else {
-            _loginResult.value = LoginResult(error = R.string.login_failed)
-        }
+        fun createUserView(user: LoggedInUser) = LoggedInUserView(displayName = user.displayName)
+        fun loginFailedException(user: LoggedInUserView?, cause: Exception) =
+            ResourceMessageException(R.string.login_failed)
+
+        _loginResult.value = result then ::createUserView otherwise ::loginFailedException
     }
 
     fun loginDataChanged(username: String, password: String) {

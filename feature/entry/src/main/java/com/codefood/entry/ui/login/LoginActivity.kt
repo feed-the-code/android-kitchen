@@ -14,6 +14,9 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
+import com.codefood.arch.ResourceMessageException
+import com.codefood.arch.Result
+import com.codefood.arch.observeNotNull
 
 import com.codefood.entry.R
 
@@ -34,8 +37,7 @@ class LoginActivity : AppCompatActivity() {
         loginViewModel = ViewModelProviders.of(this, LoginViewModelFactory())
             .get(LoginViewModel::class.java)
 
-        loginViewModel.loginFormState.observe(this@LoginActivity, Observer {
-            val loginState = it ?: return@Observer
+        observeNotNull(loginViewModel.loginFormState) { loginState ->
 
             // disable login button unless both username / password is valid
             login.isEnabled = loginState.isDataValid
@@ -46,23 +48,25 @@ class LoginActivity : AppCompatActivity() {
             if (loginState.passwordError != null) {
                 password.error = getString(loginState.passwordError)
             }
-        })
+        }
 
-        loginViewModel.loginResult.observe(this@LoginActivity, Observer {
-            val loginResult = it ?: return@Observer
+        observeNotNull(loginViewModel.loginResult) { loginResult ->
 
             loading.visibility = View.GONE
-            if (loginResult.error != null) {
-                showLoginFailed(loginResult.error)
+            when (loginResult) {
+                is Result.Success -> {
+                    updateUiWithUser(loginResult.data)
+                }
+                is Result.Error -> {
+                    showLoginFailed((loginResult.cause as ResourceMessageException).resource)
+                }
             }
-            if (loginResult.success != null) {
-                updateUiWithUser(loginResult.success)
-            }
+
             setResult(Activity.RESULT_OK)
 
             //Complete and destroy login activity once successful
             finish()
-        })
+        }
 
         username.afterTextChanged {
             loginViewModel.loginDataChanged(
