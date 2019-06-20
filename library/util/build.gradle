@@ -1,0 +1,14 @@
+plugins {
+    id 'java-library'
+    id "org.jetbrains.kotlin.jvm"
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation Kotlin.stdLib
+
+//    implementation DI.koin
+}
+
+sourceCompatibility = "8"
+targetCompatibility = "8"
