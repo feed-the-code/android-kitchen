@@ -1,7 +1,6 @@
 package com.codefood.entry.ui.login
 
 import android.app.Activity
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import androidx.annotation.StringRes
@@ -37,17 +36,13 @@ class LoginActivity : AppCompatActivity() {
         loginViewModel = ViewModelProviders.of(this, LoginViewModelFactory())
             .get(LoginViewModel::class.java)
 
-        observeNotNull(loginViewModel.loginFormState) { loginState ->
+        observeNotNull(loginViewModel.loginValidation) { loginState ->
 
             // disable login button unless both username / password is valid
-            login.isEnabled = loginState.isDataValid
+            login.isEnabled = loginState.isValid
 
-            if (loginState.usernameError != null) {
-                username.error = getString(loginState.usernameError)
-            }
-            if (loginState.passwordError != null) {
-                password.error = getString(loginState.passwordError)
-            }
+            username.error = loginState.usernameResult.second?.let(::getString)
+            password.error = loginState.passwordResult.second?.let(::getString)
         }
 
         observeNotNull(loginViewModel.loginResult) { loginResult ->
