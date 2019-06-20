@@ -28,14 +28,13 @@ object Design {
 }
 
 object Kotlin {
-    const val stdLib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlin}"
+    const val stdLib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Config.kotlinVersion}"
     const val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.kotlinCoroutines}"
     const val coroutinesAndroid =
         "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.kotlinCoroutines}"
-    const val reflection = "org.jetbrains.kotlin:kotlin-reflect:${Versions.kotlin}"
+    const val reflection = "org.jetbrains.kotlin:kotlin-reflect:${Config.kotlinVersion}"
 
     private object Versions {
-        const val kotlin = "1.3.31"
         const val kotlinCoroutines = "1.1.1"
     }
 }
