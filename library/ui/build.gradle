@@ -26,6 +26,7 @@ dependencies {
     implementation Kotlin.stdLib
     implementation Jetpack.appCompat
     implementation Jetpack.core
+    implementation Jetpack.recyclerView
 
     implementation Image.glide
 
