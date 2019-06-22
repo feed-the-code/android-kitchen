@@ -1,3 +1,3 @@
-include ':app', ':feature:entry'
+include ':app', ':feature:entry', ':library:ui'
 include ':library:network'
 include ':library:arch'

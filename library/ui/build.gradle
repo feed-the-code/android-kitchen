@@ -1,0 +1,35 @@
+plugins {
+    id 'com.android.library'
+    id "org.jetbrains.kotlin.android"
+    id "de.mannodermaus.android-junit5"
+}
+
+android {
+    defaultConfig {
+        versionCode 1
+        versionName "1.0"
+    }
+    testOptions {
+        junitPlatform {
+            filters {
+                engines {
+                    include 'spek2'
+                }
+            }
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation Kotlin.stdLib
+    implementation Jetpack.appCompat
+    implementation Jetpack.core
+
+    testImplementation Testing.jUnit
+    testImplementation Testing.spek
+    testImplementation Kotlin.reflection
+    androidTestImplementation Testing.spekRunner
+    androidTestImplementation Testing.espressoCore
+}
