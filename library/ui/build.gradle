@@ -27,6 +27,8 @@ dependencies {
     implementation Jetpack.appCompat
     implementation Jetpack.core
 
+    implementation Image.glide
+
     testImplementation Testing.jUnit
     testImplementation Testing.spek
     testImplementation Kotlin.reflection
