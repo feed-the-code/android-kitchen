@@ -1,5 +1,6 @@
 package com.codefood.entry.data
 
+import com.codefood.arch.Result
 import com.codefood.entry.data.model.LoggedInUser
 
 /**

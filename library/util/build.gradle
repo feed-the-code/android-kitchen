@@ -7,11 +7,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation Kotlin.stdLib
 
-    api Network.retrofit
-    implementation Network.serializationConverter
-    implementation Network.loggingInterceptor
-
-    implementation DI.koin
+//    implementation DI.koin
 }
 
 sourceCompatibility = "8"

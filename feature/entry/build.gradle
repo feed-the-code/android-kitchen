@@ -13,4 +13,6 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(':app')
     implementation project(":library:network")
+    implementation project(':library:arch')
+    implementation Jetpack.viewmodelKtx
 }
