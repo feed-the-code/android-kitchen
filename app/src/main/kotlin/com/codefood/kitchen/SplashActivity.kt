@@ -10,5 +10,6 @@ internal class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         navigator.entry(from = this)
+        this.finish()
     }
 }

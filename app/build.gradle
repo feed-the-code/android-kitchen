@@ -17,7 +17,7 @@ android {
         }
     }
 
-    dynamicFeatures = [":feature:home"]
+    dynamicFeatures = [":feature:entry", ":feature:home"]
 
 
 }
@@ -39,6 +39,7 @@ dependencies {
     api project(":library:network")
     api project(":library:arch")
     api project(":library:ui")
+    api project(":library:util")
 
     testImplementation Testing.jUnit
     androidTestImplementation Testing.androidRunner
