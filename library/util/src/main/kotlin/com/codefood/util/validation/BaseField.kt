@@ -5,7 +5,9 @@ internal abstract class BaseField<T>(
     value: T? = null
 ) : Field<T> {
     override var isDirty: Boolean = false
-        internal set
+
+    override val isValid: Boolean
+        get() = error == null
 
     override var value: T? = value
         protected set

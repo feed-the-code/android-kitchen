@@ -6,13 +6,16 @@ import kotlin.reflect.full.declaredMemberProperties
 interface Form {
     val isValid
         get() = fieldMembers
-            .onEach { it.isDirty = true }
-            .map { it.error }
-            .all { it == null }
+            .all { it.isValid }
+
+    fun validate() {
+        fieldMembers
+            .forEach { it.isDirty = true }
+    }
 }
 
 @Suppress("UNCHECKED_CAST")
 internal val Form.fieldMembers
     get() = (this::class as KClass<Form>)
         .declaredMemberProperties
-        .mapNotNull { it.get(this) as? OptionalField<*> }
+        .mapNotNull { it.get(this) as? Field<*> }

@@ -3,7 +3,8 @@ package com.codefood.util.validation
 import com.codefood.util.ListBuilder
 
 interface Field<T> {
-    val isDirty: Boolean
+    var isDirty: Boolean
+    val isValid: Boolean
     val value: T?
     val error: String?
 

@@ -6,6 +6,9 @@ internal class RequiredField<T>(
     rules: List<Rule<T>>,
     value: T? = null
 ) : BaseField<T>(rules, value) {
+    override val isValid: Boolean
+        get() = isDirty && super.isValid
+
     override val error: String?
         get() {
             if (!isDirty) return null
