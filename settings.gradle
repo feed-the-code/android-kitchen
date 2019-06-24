@@ -1,5 +1,6 @@
 include ':app', ':feature:home'
 include ':feature:entry'
-include ':library:util'
 include ':library:arch'
 include ':library:network'
+include ':library:util'
+include ':library:ui'
