@@ -14,5 +14,6 @@ dependencies {
     implementation project(':app')
     implementation project(":library:network")
     implementation project(':library:arch')
+    implementation project(':library:util')
     implementation Jetpack.viewmodelKtx
 }
