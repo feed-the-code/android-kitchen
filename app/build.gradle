@@ -17,7 +17,7 @@ android {
         }
     }
 
-    dynamicFeatures = [":feature:entry", ":feature:home"]
+    dynamicFeatures = [":feature:home"]
 
 
 }
@@ -38,6 +38,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     api project(":library:network")
     api project(":library:arch")
+    api project(":library:ui")
 
     testImplementation Testing.jUnit
     androidTestImplementation Testing.androidRunner

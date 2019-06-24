@@ -5,7 +5,7 @@ import android.content.ContentValues
 import android.database.Cursor
 import android.net.Uri
 import android.util.Log
-import com.codefood.kitchen.feature.Home
+import com.codefood.kitchen.feature.HomeFeature
 import com.codefood.kitchen.koinApp
 
 class HomeProvider : ContentProvider() {
@@ -19,7 +19,7 @@ class HomeProvider : ContentProvider() {
     override fun onCreate(): Boolean {
         Log.i("EntryProvider", "Initializing...")
         koinApp.koin.apply {
-            declare<Home>(FeatureImpl)
+            declare<HomeFeature>(FeatureImpl)
         }
         return true
     }
