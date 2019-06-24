@@ -15,4 +15,4 @@ interface Form {
 internal val Form.fieldMembers
     get() = (this::class as KClass<Form>)
         .declaredMemberProperties
-        .mapNotNull { it.get(this) as? Field<*> }
+        .mapNotNull { it.get(this) as? OptionalField<*> }

@@ -7,10 +7,12 @@ import org.spekframework.spek2.style.specification.describe
 object FieldSpec : Spek({
 
     val field by memoized {
-        Field(
-            value = "",
-            rules = listOf(Rule { input -> "empty".takeIf { input.isNullOrEmpty() } })
-        )
+        Field.optional<String> {
+            value = ""
+            rules {
+                +Rule<String?> { input -> "empty".takeIf { input.isNullOrEmpty() } }
+            }
+        }
     }
 
     describe("Initial State") {
@@ -22,9 +24,6 @@ object FieldSpec : Spek({
         }
         it("has no error") {
             assertEquals(null, field.error)
-        }
-        it("has rule") {
-            assertEquals("empty", field.rules.first().validate(""))
         }
     }
 
@@ -42,4 +41,35 @@ object FieldSpec : Spek({
             assertEquals("empty", field.error)
         }
     }
+
+    describe("Builder") {
+        describe("Required builder") {
+            val requiredField by memoized {
+                Field.required<String> {
+                    message = REQUIRED_MESSAGE
+                    alsoNull = ""
+                    rules {
+                        +Rule<String> { input -> "length".takeIf { input.length < 3 } }
+                    }
+                }
+            }
+
+            it("empty") {
+                requiredField.input("")
+                assertEquals(REQUIRED_MESSAGE, requiredField.error)
+            }
+
+            it("checks non empty") {
+                requiredField.input("a")
+                assertEquals("length", requiredField.error)
+            }
+
+            it("valid input") {
+                requiredField.input("abc")
+                assertEquals(null, requiredField.error)
+            }
+        }
+    }
 })
+
+const val REQUIRED_MESSAGE = "Required"

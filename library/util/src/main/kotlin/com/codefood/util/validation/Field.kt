@@ -1,30 +1,49 @@
 package com.codefood.util.validation
 
-class Field<T>(
-    internal val rules: List<Rule<T?>>,
-    value: T? = null
-) {
-    var isDirty: Boolean = false
-        internal set
+import com.codefood.util.ListBuilder
 
-    var value: T? = value
-        private set
-
+interface Field<T> {
+    val isDirty: Boolean
+    val value: T?
     val error: String?
-        get() {
-            if (!isDirty) return null
-            for (rule in rules) {
-                val result = rule.validate(value)
-                if (result != null) {
-                    return result
-                }
+
+    fun input(value: T)
+
+    interface Builder<T> {
+        fun build(): Field<T>
+
+        class Required<T> : Builder<T> {
+            var value: T? = null
+            var alsoNull: T? = null
+            var message: String = ""
+            var rules: List<Rule<T>> = emptyList()
+
+            fun rules(block: ListBuilder<Rule<T>>.() -> Unit) {
+                rules = ListBuilder<Rule<T>>().apply(block).build()
             }
-            return null
+
+            override fun build(): Field<T> = RequiredField(
+                alsoNull = alsoNull,
+                nullMessage = message,
+                rules = rules,
+                value = value
+            )
         }
 
-    fun input(value: T) {
-        isDirty = true
-        this.value = value
+        class Optional<T> : Builder<T?> {
+            var value: T? = null
+            var rules: List<Rule<T?>> = emptyList()
+
+            fun rules(block: ListBuilder<Rule<T?>>.() -> Unit) {
+                rules = ListBuilder<Rule<T?>>().apply(block).build()
+            }
+
+            override fun build(): Field<T?> = OptionalField(rules, value)
+        }
+    }
+
+    companion object {
+        fun <T> required(block: Builder.Required<T>.() -> Unit): Field<T> = Builder.Required<T>().apply(block).build()
+        fun <T> optional(block: Builder.Optional<T>.() -> Unit): Field<T?> = Builder.Optional<T>().apply(block).build()
     }
 }
-
