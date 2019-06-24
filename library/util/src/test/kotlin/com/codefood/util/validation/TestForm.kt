@@ -3,7 +3,7 @@ package com.codefood.util.validation
 class TestForm : Form {
     val unrelated = "hihihi"
     val field1: Field<String?> =
-        Field.optional { value = "test1" }
+        Field.required { }
     val field2: Field<String?> =
         Field.optional {
             rules {

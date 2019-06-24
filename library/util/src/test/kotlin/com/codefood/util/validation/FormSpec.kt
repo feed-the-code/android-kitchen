@@ -32,11 +32,12 @@ object FormSpec : Spek({
             assertEquals(false, form.isValid)
         }
         it("turns field dirty") {
-            form.isValid
+            form.validate()
             assertEquals(true, form.field1.isDirty)
             assertEquals(true, form.field2.isDirty)
         }
         it("valid after input") {
+            form.field1.input("test1")
             form.field2.input("test1")
             assertEquals(true, form.isValid)
         }
