@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import org.koin.android.ext.android.inject
 
 internal class SplashActivity : AppCompatActivity() {
-    val navigator: Navigator by inject()
+    private val navigator: Navigator by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
