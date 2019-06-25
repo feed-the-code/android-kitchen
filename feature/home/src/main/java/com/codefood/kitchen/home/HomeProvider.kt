@@ -1,4 +1,4 @@
-package com.codefood.home
+package com.codefood.kitchen.home
 
 import android.content.ContentProvider
 import android.content.ContentValues

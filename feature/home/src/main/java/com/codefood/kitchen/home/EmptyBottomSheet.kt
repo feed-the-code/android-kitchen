@@ -1,4 +1,4 @@
-package com.codefood.home
+package com.codefood.kitchen.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
