@@ -6,6 +6,8 @@ object Jetpack {
     const val viewmodelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
     const val recyclerView = "androidx.recyclerview:recyclerview:${Versions.recyclerView}"
     const val annotation = "androidx.annotation:annotation:${Versions.annotation}"
+    const val navigationUI = "androidx.navigation:navigation-ui-ktx:${Versions.navigation}"
+    const val navigationFragment = "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
 
     private object Versions {
         const val annotation = "1.1.0"
@@ -14,6 +16,7 @@ object Jetpack {
         const val fragment = "1.1.0-beta01"
         const val lifecycle = "2.2.0-alpha01"
         const val recyclerView = "1.0.0"
+        const val navigation = "2.1.0-alpha05"
     }
 }
 
