@@ -17,7 +17,6 @@ import com.codefood.arch.ResourceMessageException
 import com.codefood.arch.Result
 import com.codefood.arch.observeNotNull
 import com.codefood.entry.R
-import com.codefood.kitchen.Navigator
 
 class LoginActivity : AppCompatActivity() {
 
@@ -101,6 +100,7 @@ class LoginActivity : AppCompatActivity() {
             "$welcome $displayName",
             Toast.LENGTH_LONG
         ).show()
+        finish()
     }
 
     private fun showLoginFailed(@StringRes errorString: Int) {
