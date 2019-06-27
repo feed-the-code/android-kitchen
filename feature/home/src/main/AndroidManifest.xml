@@ -17,11 +17,6 @@
     <application
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <provider
-            android:name=".HomeProvider"
-            android:authorities="home"
-            android:enabled="true"
-            android:exported="false" />
     </application>
 
 </manifest>
