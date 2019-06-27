@@ -1,4 +1,4 @@
-include ':app'
+include ':app', ':feature:home'
 include ':feature:entry'
 include ':library:arch'
 include ':library:network'

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:dist="http://schemas.android.com/apk/distribution"
-    package="com.codefood.entry">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.codefood.kitchen.home">
 
     <dist:module
         dist:instant="false"
-        dist:title="@string/title_featureentry">
+        dist:title="@string/title_featurehome">
         <dist:delivery>
             <dist:install-time />
         </dist:delivery>
@@ -13,10 +14,9 @@
         <dist:fusing dist:include="true" />
     </dist:module>
 
-    <application>
-        <activity
-            android:name=".ui.login.LoginActivity"
-            android:label="@string/title_activity_login" />
+    <application
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
     </application>
 
 </manifest>

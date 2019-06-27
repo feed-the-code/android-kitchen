@@ -100,6 +100,7 @@ class LoginActivity : AppCompatActivity() {
             "$welcome $displayName",
             Toast.LENGTH_LONG
         ).show()
+        finish()
     }
 
     private fun showLoginFailed(@StringRes errorString: Int) {
