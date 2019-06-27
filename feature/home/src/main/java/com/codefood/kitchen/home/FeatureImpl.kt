@@ -5,5 +5,5 @@ import android.content.Intent
 import com.codefood.kitchen.feature.HomeFeature
 
 object FeatureImpl : HomeFeature {
-    override fun intent(from: Context): Intent = Intent(from, HomeActivity::class.java)
+    override fun intent(from: Context): Intent = Intent(from, HomeFragment::class.java)
 }

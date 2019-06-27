@@ -2,17 +2,16 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/nav_app"
-    app:startDestination="@id/emptyFragment">
+    app:startDestination="@id/homeFragment">
 
-    <activity
-        android:id="@+id/homeActivity"
-        android:name="com.codefood.kitchen.home.HomeActivity" />
     <fragment
-        android:id="@+id/emptyFragment"
-        android:name="com.codefood.kitchen.EmptyFragment"
-        android:label="EmptyFragment">
+        android:id="@+id/homeFragment"
+        android:name="com.codefood.kitchen.home.HomeFragment">
         <action
-            android:id="@+id/action_emptyFragment_to_homeActivity"
-            app:destination="@id/homeActivity" />
+            android:id="@+id/action_homeFragment_to_entryActivity"
+            app:destination="@id/entryActivity" />
     </fragment>
+    <activity
+        android:id="@+id/entryActivity"
+        android:name="com.codefood.entry.ui.login.LoginActivity" />
 </navigation>

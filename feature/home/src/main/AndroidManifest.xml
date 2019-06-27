@@ -17,19 +17,11 @@
     <application
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".HomeActivity">
-            <intent-filter>
-                <action android:name="action.home.open" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-
         <provider
             android:name=".HomeProvider"
             android:authorities="home"
             android:enabled="true"
             android:exported="false" />
-
     </application>
 
 </manifest>
