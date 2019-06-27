@@ -18,7 +18,6 @@ import com.codefood.arch.Result
 import com.codefood.arch.observeNotNull
 import com.codefood.entry.R
 import com.codefood.kitchen.Navigator
-import org.koin.android.ext.android.get
 
 class LoginActivity : AppCompatActivity() {
 
@@ -97,13 +96,11 @@ class LoginActivity : AppCompatActivity() {
         val welcome = getString(R.string.welcome)
         val displayName = model.displayName
         // TODO : initiate successful logged in experience
-        val navigator: Navigator = get()
         Toast.makeText(
             applicationContext,
             "$welcome $displayName",
             Toast.LENGTH_LONG
         ).show()
-        navigator.home(this)
     }
 
     private fun showLoginFailed(@StringRes errorString: Int) {
