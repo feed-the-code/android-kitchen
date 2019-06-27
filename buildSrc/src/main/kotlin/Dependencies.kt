@@ -27,6 +27,14 @@ object Design {
     }
 }
 
+object Image {
+    const val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
+
+    private object Versions {
+        const val glide = "4.9.0"
+    }
+}
+
 object Kotlin {
     const val stdLib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Config.kotlinVersion}"
     const val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.kotlinCoroutines}"
