@@ -1,4 +1,4 @@
-package com.codefood.ui.recyclerview
+package com.codefood.kitchen.ui.recyclerview
 
 import android.view.View
 import android.view.ViewGroup
@@ -6,7 +6,7 @@ import androidx.annotation.LayoutRes
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.codefood.ui.inflate
+import com.codefood.kitchen.ui.inflate
 import kotlin.properties.Delegates
 
 fun <T> listAdapter(block: ListAdapterBuilder<T>.() -> Unit): ListAdapter<T, RecyclerView.ViewHolder> =
@@ -27,7 +27,10 @@ class ListAdapterBuilder<T> {
 
     fun build() =
         object : ListAdapter<T, RecyclerView.ViewHolder>(diff ?: Diff()) {
-            override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
+            override fun onCreateViewHolder(
+                parent: ViewGroup,
+                viewType: Int
+            ): RecyclerView.ViewHolder =
                 ViewHolder(parent inflate layout)
 
             override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {

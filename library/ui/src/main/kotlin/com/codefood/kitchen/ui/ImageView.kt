@@ -1,4 +1,4 @@
-package com.codefood.ui
+package com.codefood.kitchen.ui
 
 import android.graphics.drawable.Drawable
 import android.widget.ImageView

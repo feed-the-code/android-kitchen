@@ -27,6 +27,7 @@ dependencies {
     implementation Jetpack.appCompat
     implementation Jetpack.core
     implementation Jetpack.recyclerView
+    implementation 'me.saket:inboxrecyclerview:1.0.0-rc1'
 
     implementation Image.glide
 

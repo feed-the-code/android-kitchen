@@ -1,4 +1,4 @@
-package com.codefood.ui.recyclerview
+package com.codefood.kitchen.ui.recyclerview
 
 import androidx.recyclerview.widget.DiffUtil
 

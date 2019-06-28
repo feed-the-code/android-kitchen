@@ -1,4 +1,4 @@
-package com.codefood.ui
+package com.codefood.kitchen.ui
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test

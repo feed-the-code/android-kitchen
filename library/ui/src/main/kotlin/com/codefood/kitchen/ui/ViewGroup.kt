@@ -1,4 +1,4 @@
-package com.codefood.ui
+package com.codefood.kitchen.ui
 
 import android.view.LayoutInflater
 import android.view.View
