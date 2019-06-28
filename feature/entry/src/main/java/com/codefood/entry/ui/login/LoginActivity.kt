@@ -1,10 +1,7 @@
 package com.codefood.entry.ui.login
 
 import android.app.Activity
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.annotation.StringRes
-import androidx.appcompat.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
@@ -13,10 +10,12 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.annotation.StringRes
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProviders
 import com.codefood.arch.ResourceMessageException
 import com.codefood.arch.Result
 import com.codefood.arch.observeNotNull
-
 import com.codefood.entry.R
 
 class LoginActivity : AppCompatActivity() {
@@ -33,16 +32,11 @@ class LoginActivity : AppCompatActivity() {
         val login = findViewById<Button>(R.id.login)
         val loading = findViewById<ProgressBar>(R.id.loading)
 
-        loginViewModel = ViewModelProviders.of(this, LoginViewModelFactory())
+        loginViewModel = ViewModelProviders.of(this, LoginViewModelFactory(application))
             .get(LoginViewModel::class.java)
 
-        observeNotNull(loginViewModel.loginValidation) { loginState ->
-
-            // disable login button unless both username / password is valid
-            login.isEnabled = loginState.isValid
-
-            username.error = loginState.usernameResult.second?.let(::getString)
-            password.error = loginState.passwordResult.second?.let(::getString)
+        observeNotNull(loginViewModel.loginEnabled) {
+            login.isEnabled = it
         }
 
         observeNotNull(loginViewModel.loginResult) { loginResult ->
@@ -63,36 +57,37 @@ class LoginActivity : AppCompatActivity() {
             finish()
         }
 
-        username.afterTextChanged {
-            loginViewModel.loginDataChanged(
-                username.text.toString(),
-                password.text.toString()
-            )
+        username.apply {
+            afterTextChanged {
+                loginViewModel.apply {
+                    form.username.input(it)
+                    error = form.username.error
+                    loginDataChanged()
+                }
+            }
         }
 
         password.apply {
             afterTextChanged {
-                loginViewModel.loginDataChanged(
-                    username.text.toString(),
-                    password.text.toString()
-                )
+                loginViewModel.apply {
+                    form.password.input(it)
+                    error = form.password.error
+                    loginDataChanged()
+                }
             }
 
             setOnEditorActionListener { _, actionId, _ ->
                 when (actionId) {
                     EditorInfo.IME_ACTION_DONE ->
-                        loginViewModel.login(
-                            username.text.toString(),
-                            password.text.toString()
-                        )
+                        loginViewModel.login()
                 }
                 false
             }
+        }
 
-            login.setOnClickListener {
-                loading.visibility = View.VISIBLE
-                loginViewModel.login(username.text.toString(), password.text.toString())
-            }
+        login.setOnClickListener {
+            loading.visibility = View.VISIBLE
+            loginViewModel.login()
         }
     }
 
@@ -105,6 +100,7 @@ class LoginActivity : AppCompatActivity() {
             "$welcome $displayName",
             Toast.LENGTH_LONG
         ).show()
+        finish()
     }
 
     private fun showLoginFailed(@StringRes errorString: Int) {

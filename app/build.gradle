@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
-    id "org.jetbrains.kotlin.android"
+    id "kotlin-android"
+    id "kotlin-android-extensions"
 }
 
 android {
@@ -16,22 +17,35 @@ android {
         }
     }
 
-    dynamicFeatures = [":feature:entry"]
+    dynamicFeatures = [
+            ":feature:entry",
+            ":feature:home"
+    ]
+
+
 }
 
 dependencies {
     api Jetpack.appCompat
     api Jetpack.core
     api Jetpack.lifecycle
+    api Jetpack.viewmodelKtx
     api Jetpack.annotation
+    api Jetpack.navigationUI
+    api Jetpack.navigationFragment
     api Design.material
     api Design.constraintLayout
     api DI.koinViewmodel
     api Kotlin.stdLib
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation project(":library:network")
+    api project(":library:network")
+    api project(":library:arch")
+    api project(":library:ui")
+    api project(":library:util")
 
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     testImplementation Testing.jUnit
     androidTestImplementation Testing.androidRunner
     androidTestImplementation Testing.espressoCore

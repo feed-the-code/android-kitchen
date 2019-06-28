@@ -7,7 +7,19 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation Kotlin.stdLib
 
+    implementation Kotlin.reflection
 //    implementation DI.koin
+
+    testImplementation Testing.jUnit
+    testImplementation Testing.spek
+    testRuntimeOnly Testing.spekRunner
+    testRuntimeOnly Kotlin.reflection
+}
+
+test {
+    useJUnitPlatform {
+        includeEngines 'spek2'
+    }
 }
 
 sourceCompatibility = "8"
