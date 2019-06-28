@@ -1,18 +1,21 @@
 package com.codefood.entry.ui.login
 
+import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import android.util.Patterns
-import com.codefood.entry.data.LoginRepository
-import com.codefood.entry.data.Result
-
+import com.codefood.arch.ResourceMessageException
+import com.codefood.arch.Result
+import com.codefood.arch.into
 import com.codefood.entry.R
+import com.codefood.entry.data.LoginRepository
+
+typealias LoginResult = Result<LoggedInUserView>
 
 class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel() {
 
-    private val _loginForm = MutableLiveData<LoginFormState>()
-    val loginFormState: LiveData<LoginFormState> = _loginForm
+    private val _loginValidation = MutableLiveData<LoginValidation>()
+    val loginValidation: LiveData<LoginValidation> = _loginValidation
 
     private val _loginResult = MutableLiveData<LoginResult>()
     val loginResult: LiveData<LoginResult> = _loginResult
@@ -21,21 +24,32 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
         // can be launched in a separate asynchronous job
         val result = loginRepository.login(username, password)
 
-        if (result is Result.Success) {
-            _loginResult.value = LoginResult(success = LoggedInUserView(displayName = result.data.displayName))
-        } else {
-            _loginResult.value = LoginResult(error = R.string.login_failed)
-        }
+        _loginResult.value = result
+            .map { LoggedInUserView(displayName = it.displayName) }
+            .mapError { ResourceMessageException(R.string.login_failed) }
     }
 
     fun loginDataChanged(username: String, password: String) {
-        if (!isUserNameValid(username)) {
-            _loginForm.value = LoginFormState(usernameError = R.string.invalid_username)
-        } else if (!isPasswordValid(password)) {
-            _loginForm.value = LoginFormState(passwordError = R.string.invalid_password)
-        } else {
-            _loginForm.value = LoginFormState(isDataValid = true)
+
+        fun validateUser(validation: LoginValidation) = with(validation) {
+            Result.Success(
+                if (!isUserNameValid(usernameResult.first))
+                    copy(usernameResult = usernameResult.copy(second = R.string.invalid_username)) else this
+            )
         }
+
+        fun validatePassword(validation: LoginValidation) = with(validation) {
+            Result.Success(
+                if (!isPasswordValid(passwordResult.first))
+                    copy(passwordResult = passwordResult.copy(second = R.string.invalid_password)) else this
+            )
+        }
+
+        fun postResult(validation: LoginValidation) {
+            _loginValidation.value = validation
+        }
+
+        LoginValidation.from(username, password) into ::validateUser then ::validatePassword run ::postResult
     }
 
     // A placeholder username validation check

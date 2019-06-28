@@ -1,7 +1,7 @@
 import org.gradle.api.JavaVersion
 
 object Config {
-    const val kotlinVersion = "1.3.31"
+    const val kotlinVersion = "1.3.40"
     const val minSdk = 21
     const val compileSdk = 28
     const val targetSdk = 28

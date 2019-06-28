@@ -1,3 +1,6 @@
-include ':app', ':feature:entry', ':library:ui'
-include ':library:network'
+include ':app'
+include ':feature:entry'
+include ':library:util'
 include ':library:arch'
+include ':library:network'
+include ':library:ui'
